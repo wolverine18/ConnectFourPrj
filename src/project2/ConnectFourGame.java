@@ -196,7 +196,6 @@ public class ConnectFourGame {
 			if(board[0][c] == -1)
 				return false;
 		}
-		System.out.println("Cat's Game");
 		
 		return true;
 	}

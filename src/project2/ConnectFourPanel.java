@@ -125,7 +125,7 @@ public class ConnectFourPanel extends JPanel {
 	private void connectFour3D() {
 		removeAll();
 		connectFour3D = new ConnectFourGame3D(boardSize);
-		
+
 		selection3D = new JButton[boardSize][boardSize];
 		for(int width = 0; width < boardSize; width++) {
 			for (int col = 0; col < boardSize; col++) {
@@ -159,15 +159,18 @@ public class ConnectFourPanel extends JPanel {
 				for (int col = 0; col < boardSize; col++) {
 					if (selection[col] == comp) {
 						int row = connectFour.selectCol(col);
-						if (row == -1)
+						if (row == -1) {
 							JOptionPane.showMessageDialog(null,
-									"Col is full!");
+									"Column is full!");
+							connectFour.switchPlayer();
+						}
 						else 
 							board[row][col].setIcon((
-								   connectFour.getCurrentPlayer() == 1)
+									connectFour.getCurrentPlayer() == 1)
 									? iconPlayer1 : iconPlayer2);
 						if(connectFour.isWinner())
 							panelIsWinner();
+						isCatsGame();
 					}
 				}
 				connectFour.catsGame();
@@ -184,6 +187,7 @@ public class ConnectFourPanel extends JPanel {
 							board[row][col].setIcon(iconPlayer1);
 						if(connectFour.isWinner())
 							panelIsWinner();
+						isCatsGame();
 					}
 				}
 				connectFour.switchPlayer();
@@ -193,6 +197,7 @@ public class ConnectFourPanel extends JPanel {
 				board[aIRow][aICol].setIcon(iconPlayer2);
 				if(connectFour.isWinner())
 					panelIsWinner();
+				isCatsGame();
 				connectFour.switchPlayer();
 			}
 			else if(gameType == 2){
@@ -206,8 +211,8 @@ public class ConnectFourPanel extends JPanel {
 										"Column is full!");
 							else
 								selection3D[col][width].setText(
-									selection3D[col][width].getText() 
-									+ connectFour3D.getCurrentPlayer()
+										selection3D[col][width].getText() 
+										+ connectFour3D.getCurrentPlayer()
 										+ ",");
 							if(connectFour3D.isWinner())
 								panelIsWinner();
@@ -216,6 +221,24 @@ public class ConnectFourPanel extends JPanel {
 					}
 				}
 			}	
+		}
+
+		private void isCatsGame() {
+			if(connectFour.catsGame()) {
+				JOptionPane.showMessageDialog(null,
+						"Cat's Game");
+				String[] options = new String[] {"Yes", "No"};
+				int response = JOptionPane.showOptionDialog(
+						null, "Would you like to play again?", 
+						"Connect Four", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.PLAIN_MESSAGE,
+						null, options, options[0]);
+
+				if(response == 0)
+					gameSetup();
+				else
+					System.exit(1);
+			}
 		}
 
 		private void panelIsWinner() {
