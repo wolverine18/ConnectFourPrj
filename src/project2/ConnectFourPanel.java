@@ -180,9 +180,11 @@ public class ConnectFourPanel extends JPanel {
 				for (int col = 0; col < boardSize; col++) {
 					if (selection[col] == comp) {
 						int row = connectFour.selectCol(col);
-						if (row == -1)
+						if (row == -1) {
 							JOptionPane.showMessageDialog(null, 
 									"Column is full!");
+							return;
+						}
 						else 
 							board[row][col].setIcon(iconPlayer1);
 						if(connectFour.isWinner())
