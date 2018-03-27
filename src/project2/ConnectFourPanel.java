@@ -170,6 +170,7 @@ public class ConnectFourPanel extends JPanel {
 							panelIsWinner();
 					}
 				}
+				connectFour.catsGame();
 				connectFour.switchPlayer();
 			}
 			else if(gameType == 1) {

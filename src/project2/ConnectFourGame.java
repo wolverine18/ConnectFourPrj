@@ -186,6 +186,20 @@ public class ConnectFourGame {
 		board[row][col] = -1;
 		return col;
 	}
+	
+	
+	/*****************************************************************
+	 * Determines if there is a Cat's Game
+	 *****************************************************************/
+	public boolean catsGame() {
+		for(int c = 0; c < size; c++) {
+			if(board[0][c] == -1)
+				return false;
+		}
+		System.out.println("Cat's Game");
+		
+		return true;
+	}
 
 	/******************************************************************
 	 * Returns the current player.

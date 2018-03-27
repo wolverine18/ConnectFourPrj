@@ -28,6 +28,7 @@ public class ConnectFour {
 		frame.setJMenuBar(menus);
 		menus.add(fileMenu);
 
+		//hi
 		frame.getContentPane().add(new ConnectFourPanel(quitItem, gameItem, restartItem));
 
 		frame.pack();
